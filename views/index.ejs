@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Custom CSS for Chessboard -->
+  <style>
+    .chessboard {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(8, 1fr);
+      width: min(90vw, 32rem);
+  height: min(90vw, 32rem);
+      border: 6px solid #1f2937;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .square {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      user-select: none;
+      transition: background-color 0.2s ease;
+    }
+    .square:hover {
+  cursor: pointer;
+  filter: brightness(1.1);
+}
+
+    .light { background-color: #f3f4f6; }
+    .dark { background-color: #364154; color: white; }
+    .highlight { background-color: #e3db49f5 !important; }
+  </style>
+
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-black flex items-center justify-center h-screen">
+
+  <div class="flex flex-col items-center space-y-6">
+
+    <!-- Title -->
+    <h1 class="text-4xl font-extrabold tracking-wide text-white drop-shadow-lg">
+      <%= title %>
+    </h1>
+
+    <!-- Chessboard -->
+    <div id="chessboard" class="chessboard"></div>
+
+   <!-- Status -->
+<p id="status" class="text-lg font-semibold text-yellow-400">
+  Waiting for your turn...
+</p>
+
+
+  <!-- Chess.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+
+  <!-- Socket.io -->
+  <script src="/socket.io/socket.io.js"></script>
+
+  <!-- Custom JS -->
+  <script src="/js/chessgame.js"></script>
+
+</body>
+</html>
